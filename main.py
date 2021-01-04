@@ -17,7 +17,7 @@ bot = commands.Bot(command_prefix='$')
 
 @bot.event
 async def on_ready():
-    for guild in client.guilds:
+    for guild in bot.guilds:
         print(
             f'{bot.user} is connected to the following guild:\n'
             f'{guild.name}(id: {guild.id})'
