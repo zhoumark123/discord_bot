@@ -17,11 +17,11 @@ bot = commands.Bot(command_prefix='$')
 
 @bot.event
 async def on_ready():
-    guild = discord.utils.find(lambda g: g.name == GUILD, bot.guilds)
-    print(
-        f'{bot.user} is connected to the following guild:\n'
-        f'{guild.name}(id: {guild.id})'
-    )
+    for guild in client.guilds:
+        print(
+            f'{bot.user} is connected to the following guild:\n'
+            f'{guild.name}(id: {guild.id})'
+        )
     #await bot.get_channel(788800296813985823).send('np!')
 chainPend = False
 chainIds = []
