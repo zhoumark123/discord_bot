@@ -51,7 +51,6 @@ howlGifs = ['https://tenor.com/view/serious-look-howl-howls-moving-castle-gif-35
             ]
 @bot.event
 async def on_message(message):
-    print(message.id)
     if message.author == bot.user:
         return
     global sykGifs, toastGifs, mykullGifs, howlGifs
