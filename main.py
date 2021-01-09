@@ -24,7 +24,6 @@ async def on_ready():
         )
     #await bot.get_channel(788800296813985823).send('np!')
 chainPend = False
-chainIds = []
 chainKeys = []
 chainChannels = []
 sykGifs = ['https://tenor.com/view/sykkuno-gif-18778574', 
@@ -54,7 +53,7 @@ async def on_message(message):
     if message.author == bot.user:
         return
     global sykGifs, toastGifs, mykullGifs, howlGifs
-    global chainIds, chainKeys, chainPend, chainChannels
+    global chainKeys, chainPend, chainChannels
     if 'howl' in message.content.lower():
         response = random.choice(howlGifs)
         await message.channel.send(response)
@@ -71,7 +70,6 @@ async def on_message(message):
     #chain
     elif message.content == "chain on":
         await message.channel.send("k, send key")
-        #chainIds.append(message.id)
         def check(m):
             return m.author == message.author and m.channel == message.channel
         msg = await bot.wait_for('message', check=check)
@@ -84,17 +82,10 @@ async def on_message(message):
         index = chainChannels.index(message.channel)
         chainChannels.pop(index)
         chainKeys.pop(index)
-        chainIds.pop(index)
         return
     if len(chainChannels) != 0:#and chainPend == False:
         if message.channel in chainChannels and message.content != chainKeys[chainChannels.index(message.channel)]:
             await message.channel.send(f'{message.author} is sus!')
-    '''elif chainPend: 
-        temp = await message.channel.history(limit = 3).flatten()
-        if temp[2].id in chainIds: #the third from last
-            chainKeys.append(message.content)
-            chainChannels.append(message.channel)
-            chainPend = False'''
     await bot.process_commands(message)
 def has_mention(message):
     print(message.mentions)
